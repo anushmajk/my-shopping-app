@@ -6,6 +6,7 @@ import shoes from "../assets/shoes.jpg";
 import dress from "../assets/dress.jpg";
 import store from "../assets/store.webp";
 import "./Home.css";
+import ProductGrid from "../components/ProductGrid";
 
 const Home = () => {
   return (
@@ -61,6 +62,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <ProductGrid/>
     </div>
   );
 };

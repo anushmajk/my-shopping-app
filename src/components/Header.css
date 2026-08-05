@@ -1,7 +1,6 @@
 .custom-navbar{
     padding:20px;
-    background-color: transparent;
-    position:fixed;
-    top:0;
+    background-color: transparent #ffffff;
+    box-shadow: inset;
     width:100%;
 }
