@@ -9,8 +9,14 @@ const ProductGrid = () => {
   const filteredProducts = categoryName
     ? products.filter((product) => product.category.toLowerCase() === categoryName.toLowerCase())
     : products
-console.log("Category:", categoryName);
-console.log(filteredProducts);
+    if (filteredProducts.length === 0) {
+  return (
+    <div className="text-center mt-5">
+      <h4>No products found</h4>
+      <p className="text-muted">Try browsing a different category.</p>
+    </div>
+  )
+}
   return (
     <div className="container-fluid">
       <div className="row">

@@ -10,7 +10,9 @@ const ProductCard = ({product}) => {
       <div className="card-body text-center">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">${product.price.toFixed(2)}</p>
-        <button className="btn custom-btn">Add to Cart</button>
+        <button className="btn custom-btn">
+          View Details
+        </button>
       </div>
     </div>
     </Link>

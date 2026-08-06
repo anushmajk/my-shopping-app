@@ -1,12 +1,23 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import {useParams } from 'react-router-dom'
 import products from '../data/products'
 import './ProductPage.css'
+import { useCart } from '../context/CartContext'
 
 const ProductPage = () => {
   const { id } = useParams()
   const product = products.find((product) => product.id === Number(id))
-
+  const { cartItems, addToCart } = useCart()
+  const [selectedSize, setSelectedSize] = useState();
+  const [selectedColor, setSelectedColor] = useState();
+  const handleAddToCart = () => {
+  if (!selectedSize || !selectedColor) {
+    alert('Please select a size and color before adding to cart.')
+    return
+  }
+  addToCart(product, selectedSize, selectedColor)
+}
   if (!product) {
     return <div className="text-center mt-5">Product not found</div>
   }
@@ -26,7 +37,11 @@ const ProductPage = () => {
             <strong>Size:</strong>
             <div className="d-flex gap-2 mt-2">
               {product.sizes.map((size) => (
-                <button key={size} className="btn btn-outline-dark size-btn">
+                <button 
+                key={size} 
+                className={`btn size-btn ${selectedSize === size ? 'btn-dark' : 'btn-outline-dark'}`}
+                onClick={() => setSelectedSize(size)}
+                >
                   {size}
                 </button>
               ))}
@@ -39,9 +54,10 @@ const ProductPage = () => {
               {product.colors.map((color) => (
                 <div
                   key={color}
-                  className="color-swatch"
+                  className={`color-swatch ${selectedColor === color ? 'selected-swatch' : ''}`}
                   style={{ backgroundColor: color.toLowerCase() }}
                   title={color}
+                  onClick={() => setSelectedColor(color)}
                 ></div>
               ))}
             </div>
@@ -49,11 +65,13 @@ const ProductPage = () => {
 
           <h3 className="mt-4">${product.price.toFixed(2)}</h3>
 
-          <button className="btn custom-btn mt-3">Add to Cart</button>
+          <button onClick={handleAddToCart} className="btn custom-btn mt-3">
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
   )
 }
 
-export default ProductPage
+export default ProductPage;

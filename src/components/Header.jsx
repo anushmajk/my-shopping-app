@@ -1,7 +1,10 @@
 import React from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 const Header = () => {
+  const { cartItems } = useCart()
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0)
   return (
     <div>
        <nav className="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
@@ -23,7 +26,10 @@ const Header = () => {
       </ul>
 
       <ul className="navbar-nav">
-        <li className="nav-item"><Link className="nav-link" to="/cart">Cart</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/cart">
+        Cart
+        {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+        </Link></li>
       </ul>
     </div>
   </div>
