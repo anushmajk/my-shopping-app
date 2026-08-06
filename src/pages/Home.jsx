@@ -6,9 +6,10 @@ import shoes from "../assets/shoes.jpg";
 import dress from "../assets/dress.jpg";
 import store from "../assets/store.webp";
 import "./Home.css";
-import ProductGrid from "../components/ProductGrid";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+   const navigate = useNavigate();
   return (
     <div>
       <div className="hero">
@@ -23,14 +24,20 @@ const Home = () => {
           <div className="col hero">
             <img src={blouse} alt="Blouse" className="blouse" />
             <div className="hero-button">
-              <button className="btn custom-btn">Blouse</button>
-            </div>
+            <button
+              onClick={() => navigate("/products/category/blouses")}
+              className="btn custom-btn"
+            >
+              Blouse
+            </button>            </div>
           </div>
 
           <div className="col hero">
             <img src={jeans} alt="Jeans" className="jeans" />
             <div className="hero-button">
-              <button className="btn custom-btn">Jeans</button>
+              <button onClick={() => navigate("/products/category/jeans")} className="btn custom-btn">
+                Jeans
+              </button>
             </div>
           </div>
         </div>
@@ -40,14 +47,18 @@ const Home = () => {
           <div className="col hero">
             <img src={shoes} alt="Shoes" className="shoes" />
             <div className="hero-button">
-              <button className="btn custom-btn">Shoes</button>
+              <button onClick={() => navigate("/products/category/shoes")} className="btn custom-btn">
+                Shoes
+              </button>
             </div>
           </div>
 
           <div className="col hero">
             <img src={dress} alt="Dress" className="dress" />
             <div className="hero-button">
-              <button className="btn custom-btn">Dress</button>
+              <button onClick={() => navigate("/products/category/dress")} className="btn custom-btn">
+                Dress
+              </button>
             </div>
           </div>
         </div>
@@ -57,12 +68,13 @@ const Home = () => {
           <div className="col hero">
             <img src={store} alt="Store" className="store" />
             <div className="hero-button">
-              <button className="btn custom-btn">Store</button>
+              <button onClick={() => navigate("/products/category/store")} className="btn custom-btn">
+                Store
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <ProductGrid/>
     </div>
   );
 };
